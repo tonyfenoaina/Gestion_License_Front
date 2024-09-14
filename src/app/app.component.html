@@ -1,0 +1,13 @@
+<div class="license">
+  <div class="content">
+    <!-- Si le token existe, le menu est affiché -->
+    <div class="menu" *ngIf="authService.getToken()">
+      <app-menu-field></app-menu-field>
+    </div>
+    <div class="component">
+      <div style="width:100%">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

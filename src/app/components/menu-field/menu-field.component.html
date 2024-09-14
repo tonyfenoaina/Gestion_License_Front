@@ -1,0 +1,22 @@
+<div class="menu-page">
+  <div class="profil">
+    <img src="assets/defaultuser.png" alt="imguser">
+    <div class="name-label">Leonard Germin</div>
+    <div class="role">{{ role }}</div>
+    <div class="button primary2">Edit Profil</div>
+  </div>
+
+  <div class="menu">
+    <div class="content" style="width:100%">
+      <div *ngFor="let section of getFilteredSections()">
+        <div class="section">
+          <div class="type">{{ section.section }}</div>
+          <div *ngFor="let item of section.items" class="option" [routerLink]="[item.route]">
+            <i class="fa" [ngClass]="item.icon"></i>
+            <label>{{ item.label }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

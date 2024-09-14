@@ -1,0 +1,80 @@
+<div class="user-content">
+  <div class="list">
+    <nz-tabset>
+      <nz-tab nzTitle="List of users">
+        <nz-card>
+          <div>
+            <div class="input-search">
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="Search..." />
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+              </ng-template>
+            </div>
+            <nz-table #basicTable [nzData]="users" [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Contact</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>{{data.name}}</td>
+                  <td>{{data.address}}</td>
+                  <td>
+                    <a><span nz-icon nzType="edit" nzTheme="outline" style="color:blue"></span></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a><span nz-icon nzType="delete" nzTheme="outline" style="color:red"></span></a>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+            <nz-pagination class="ant-pagination-center" [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+          </div>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+  <div class="butt-popup bottom" (click)="togglePopup()">
+    <button nz-button nzType="primary" [nzSize]="size" nzShape="circle"><span nz-icon nzType="plus" nzTheme="outline"></span></button>
+  </div>
+  <div *ngIf="isPopupVisible" class="popup-form">
+    <div class="content-popup">
+      <div class="title" style="width: 100%; display:flex">
+        <span>NEW USER</span>
+        <span nz-icon nzType="close-circle" nzTheme="outline" style="margin-left: auto; cursor:pointer; font-size:22px; color:red" (click)="togglePopup()"></span>
+      </div>
+      <div>
+        <div class="input-group">
+          <div class="one-input">
+            <label>Firstname</label>
+            <input nz-input placeholder="Enter a firstname" [(ngModel)]="firstname" type="text" />
+          </div>
+          <div class="one-input">
+            <label>Lastname</label>
+            <input nz-input placeholder="Enter a lastname" [(ngModel)]="lastname" type="text" />
+          </div>
+        </div>
+        <div class="one-input">
+          <label>Email</label>
+          <input nz-input placeholder="Enter an email" [(ngModel)]="surname" type="text" />
+        </div>
+        <div class="one-input">
+          <label>Password</label>
+          <input nz-input placeholder="Enter a password" [(ngModel)]="password" type="password" />
+        </div>
+        <div class="one-input">
+          <label>Confirm a password</label>
+          <input nz-input placeholder="Confirm the password" [(ngModel)]="confirmPassword" type="password" />
+        </div>
+        <div class="actions">
+          <div href="" class="cancel-link" >Cancel</div>
+          <div class="button primary1 left" >Add</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

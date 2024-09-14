@@ -1,0 +1,9 @@
+@use 'variables' as *;
+div.user-content{
+  height: 100%;
+  color: $secondary-color-1;
+  div.input-group{
+    display: flex;
+    gap: 1rem;
+  }
+}

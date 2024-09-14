@@ -1,0 +1,82 @@
+@use 'variables' as *;
+
+div.menu-page {
+  background-color: $principal-color-2;
+  height: 100%;
+  width: 20vw;
+  color: $third-color-1;
+  display: grid;
+  grid-template-rows: 32% 50%;
+
+  div.profil>div {
+    margin-bottom: .5rem;
+  }
+
+  div.profil>div:last-child {
+    margin-bottom: 0;
+  }
+
+  div.profil {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+
+    div.name-label {
+      font-weight: 600;
+      font-size: $text-size-3;
+    }
+
+    div.role {
+      color: $principal-color-5;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      height: 4rem;
+      width: 4rem;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  div.menu>div.section {
+    margin: 1.5rem 0;
+  }
+
+  div.menu {
+    width: 80%;
+    display: flex;
+    margin: auto;
+
+    div.content {
+
+      div.section>div.type {
+        margin: 1rem 0;
+      }
+      div.section {
+        width: 100%;
+
+        div.type {
+          font-size: $text-size;
+          font-weight: 600;
+        }
+
+        div.option {
+          width: 100%;
+          padding: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          cursor: pointer;
+        }
+
+        div.option:hover {
+          background-color: rgba(20, 39, 155, 0.5);
+          backdrop-filter: blur(50px);
+        }
+      }
+    }
+  }
+}

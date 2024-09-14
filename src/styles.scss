@@ -1,0 +1,190 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'variables' as *;
+
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/font/regular/Inter-Black.otf') format('otf');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: $background-color-1;
+  font-family: 'Inter', sans-serif;
+  font-size: $text-size;
+  color: $text-color-smooth;
+}
+
+div.actions{
+  display: flex;
+  align-items: center;
+}
+
+div.cancel-link{
+  cursor: pointer;
+  color: $principal-color-1;
+  text-decoration: underline;
+}
+
+div.button {
+  padding: .5rem 1.5rem;
+  border-radius: 3rem;
+  width: max-content;
+  color: $third-color-1;
+  margin: auto;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+div.button.left{
+  margin: 0!important;
+  margin-left: auto!important;
+}
+
+div.button.primary1 {
+  background-color: $principal-color-2;
+  margin-top: $margin-top;
+}
+
+div.button.primary2 {
+  border: 3px solid #7197CD;
+  background-color: none;
+  margin-top: $min-margin-top;
+}
+
+.button:hover {
+  background-color: $principal-color-4 !important;
+  border: none !important;
+  box-shadow: $box-shadow-1;
+}
+
+i {
+  font-size: 24px;
+}
+
+.ant-tabs-bottom>.ant-tabs-nav,
+.ant-tabs-bottom>div>.ant-tabs-nav,
+.ant-tabs-top>.ant-tabs-nav,
+.ant-tabs-top>div>.ant-tabs-nav {
+  margin: 0 0 0 !important;
+}
+
+.ant-card-bordered {
+  border-radius: 20px;
+}
+
+.ant-tabs-tab {
+  margin-left: 0.6rem;
+}
+
+.ant-tabs-bottom>.ant-tabs-nav::before,
+.ant-tabs-bottom>div>.ant-tabs-nav::before,
+.ant-tabs-top>.ant-tabs-nav::before,
+.ant-tabs-top>div>.ant-tabs-nav::before {
+  border-bottom: none;
+}
+
+.ant-tabs,
+.ant-card-bordered,
+.ant-tabs-content {
+  height: 100%;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: $text-color-blue;
+}
+
+.ant-tabs-ink-bar {
+  background: $text-color-blue;
+}
+
+.ant-input-suffix {
+  color: $text-color-grey;
+}
+
+.ant-pagination-item,
+.ant-pagination-item-link {
+  border-radius: 57% !important;
+}
+
+.ant-pagination {
+  justify-content: center;
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.ant-input-affix-wrapper {
+  background-color: $principal-color-6;
+  border-radius: 5rem;
+  height: 2.5rem;
+  border: none !important;
+}
+
+.ant-input {
+  background: none;
+}
+
+.ant-pagination-item {
+  color: $principal-color-6;
+}
+
+div.input-group{
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 49% 49%;
+}
+
+// component
+div.input-search {
+  width: 30rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
+}
+
+div.butt-popup.bottom {
+  position: absolute;
+  bottom: 2rem;
+  right: 0;
+}
+
+.ant-btn-primary{
+  background: $principal-color-2;
+}
+
+div.one-input{
+  margin-bottom:1rem;
+}
+
+//popup formulaire
+div.popup-form {
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background: rgba(109, 109, 109, 0.321);
+  color: $text-color-smooth;
+  font-size: 14px;
+
+  .ant-input{
+    border-radius: 5rem;
+    height: 2.5rem;
+  }
+
+  div.content-popup{
+    background: white;
+    padding: 2rem;
+    width: 45%;
+    border-radius: .5rem;
+
+    div.title{
+      margin-bottom: 1rem;
+      font-size: 16px;
+    }
+  }
+}

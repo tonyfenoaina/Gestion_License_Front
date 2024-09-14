@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+div.input-simple {
+  color: $secondary-color-1;
+  div.label {
+    margin-bottom: .3rem;
+    font-weight: 600;
+  }
+  input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid $principal-color-5;
+    border-radius: 2rem;
+    font-size: $text-size;
+    box-sizing: border-box;
+    outline: none;
+    color: $secondary-color-1;
+    background-color: $background-color-2;
+
+    &:focus {
+      border-color: $principal-color-2;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    }
+  }
+  input::placeholder {
+    color: $secondary-color-2;
+    opacity: 1;
+  }
+}

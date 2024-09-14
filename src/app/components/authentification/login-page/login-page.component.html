@@ -1,0 +1,24 @@
+<div class="login-page">
+  <div class="form">
+    <div class="header">
+      <div class="top-style"></div>
+      <div class="logo"><img src="assets/logo-design.png" alt="logo" /></div>
+    </div>
+    <div class="content">
+      <div class="container">
+        <div class="title">Sign in - Adminstrator</div>
+        <div class="inputs">
+          <div>
+            <app-input-field label="Username or Email" type="text" name="email" placeholder="Enter a username or an email" [(value)]="email"/>
+          </div>
+          <div>
+            <app-input-field label="Password" type="password" name="password" placeholder="Enter a password" [(value)]="password"/>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="button primary1" (click)="sendValues()">Sign In</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
