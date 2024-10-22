@@ -1,0 +1,180 @@
+<div class="user-content">
+  <div class="aboutlicense">
+    <div class="header">
+      <div class="buttons">
+        <div class="button primary1 left" (click)="downloadLicense()">
+          <i class="fa-solid fa-download"></i>
+        </div>
+      </div>
+    </div>
+    <!-- detail customer & validite -->
+    <div class="row1">
+      <div class="fiche one">
+        <div
+          class="title"
+          style="width: 100%; display: flex; margin-bottom: 0.5rem"
+        >
+          <h2>Validity</h2>
+        </div>
+        <div *ngIf="licence">
+          <div class="text-span"><span> Date of validity : </span>{{ licence.licence.startDate | date: 'EE, MM-d-y, h:mm a' }}</div>
+          <div class="text-span"><span>End of validity date : </span>{{ licence.licence.endDate | date: 'EE, MM-d-y, h:mm a' }}</div>
+          <div class="text-span"><span>Number of activation : </span>{{ licence.licence.numberActivation}}</div>
+        </div>
+        <nz-spin nzTip="Loading..." *ngIf="!licence" style="height: 12vh"></nz-spin>
+      </div>
+      <div class="fiche two">
+        <div
+          class="title"
+          style="width: 100%; display: flex; margin-bottom: 0.5rem"
+        >
+          <h2>Customer</h2>
+        </div>
+        <div *ngIf="licence">
+          <div class="text-span" *ngIf="licence.licence.users.surname || licence.licence.users.firstname"><span>Name : </span>{{licence.licence.users.firstname}} {{licence.licence.users.surname}}</div>
+          <div class="text-span" *ngIf="licence.licence.users.email"><span>Email : </span><a [href]="'mailto:' + licence.licence.users.email">{{ licence.licence.users.email }}</a></div>
+          <div class="text-span" *ngIf="licence.licence.users.contact"><span>Contact : </span><a [href]="'contactto:' + licence.licence.users.contact">{{
+            licence.licence.users.contact
+          }}</a></div>
+          <div class="text-span" *ngIf="licence.licence.users.adresse"><span>Adress : </span>{{
+            licence.licence.users.adresse
+          }}</div>
+        </div>
+        <nz-spin nzTip="Loading..." *ngIf="!licence" style="height: 12vh;">
+        </nz-spin>
+      </div>
+    </div>
+    <!-- fin detail customer & validite -->
+
+    <!-- liste license -->
+    <div class="card">
+      <div class="title" style="width: 100%; display: flex; margin-bottom: 2rem">
+        <h2>License identifier</h2>
+      </div>
+      <div>
+        <nz-spin nzTip="Loading..." *ngIf="!licenceIdentityActive" style="height: 12vh;"></nz-spin>
+        <nz-table #basicTable [nzData]="licenceIdentityActive" [nzShowPagination]="false" *ngIf="licenceIdentityActive">
+          <thead>
+            <tr>
+              <th>idPC</th>
+              <th>idLicense</th>
+              <th>Activation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{ data.idPc }}</td>
+              <td>{{ data.idLicence }}</td>
+              <td *ngIf="data.modeActivation === 1" style="font-weight: bold">Manually</td>
+              <td *ngIf="data.modeActivation === 2" style="font-weight: bold">Automatic</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+      <br/>
+      <div class="button primary4" (click)="togglePopup()">
+        ADD LICENSE MANUALLY
+      </div>
+    </div>
+    <!-- fin liste license -->
+
+    <div class="card">
+      <!-- liste software -->
+      <div class="title" style="width: 100%; display: flex; margin-bottom: 0.5rem">
+        <div><h2>Software</h2></div>
+      </div>
+
+      <div>
+        <nz-spin nzTip="Loading..." *ngIf="!licence" style="height: 12vh;"></nz-spin>
+        <nz-table #basicTable [nzData]="licence.licence.software" [nzShowPagination]="false" *ngIf="licence">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ licence?.licence?.software?.name }}</td>
+              <td>
+                <img [src]="'data:image/PNG;base64,' + licence.licence.software.photo " alt="img" style="width: 50px; height:50px; border-radius:50%"/>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+
+      </div>
+      <!-- fin liste software -->
+
+      <!-- liste module -->
+      <div class="title" style="width: 100%; display: flex; margin-bottom: 0.5rem; margin-top: 2rem">
+        <h2>Modules</h2>
+      </div>
+
+      <nz-spin nzTip="Loading..." *ngIf="!licence?.modules" style="height: 12vh;"></nz-spin>
+      <nz-table #basicTable [nzData]="licence?.modules" [nzShowPagination]="false" *ngIf="licence?.modules">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.name }}</td>
+            <td>
+              <img [src]="'data:image/PNG;base64,' + data.photo " alt="img" style="width: 50px; height:50px; border-radius:50%"/>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <br/><br/>
+      <!-- fin liste module -->
+    </div>
+
+    <br/><br/>
+  </div>
+  <div *ngIf="isPopupVisible" class="popup-form">
+    <div class="content-popup">
+      <div class="title" style="width: 100%; display: flex; gap:3rem">
+        <span>ACTIVE LICENSE IDENTITY MANUALLY</span>
+        <span
+          nz-icon
+          nzType="close-circle"
+          nzTheme="outline"
+          style="
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 22px;
+            color: red;
+          "
+          (click)="togglePopup()"
+        ></span>
+      </div>
+      <div>
+        <nz-spin nzTip="Loading..." *ngIf="!licenceIdentityNonActive" style="height: 12vh;"></nz-spin>
+        <nz-table #basicTable [nzData]="licenceIdentityNonActive" [nzShowPagination]="false" *ngIf="licenceIdentityNonActive">
+          <thead>
+            <tr>
+              <th>idPC</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{ data.idPc }}</td>
+              <td>
+                <div class="button primary4" (click)="activationIdentity(data)">
+                  ACTIVATE
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+

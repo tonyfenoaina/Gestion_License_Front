@@ -1,0 +1,70 @@
+<div class="user-content">
+  <div class="list">
+    <nz-tabset>
+      <nz-tab [nzTitle]="'List of license: ' + customer.surname">
+        <nz-card>
+          <div>
+            <!-- Input de recherche
+            <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem">
+              <div class="input-search">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                  <input type="text" nz-input placeholder="Search..." value="keyword" [(ngModel)]="keyword"/>
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                  <span nz-icon nzType="search" nzTheme="outline"></span>
+                </ng-template>
+              </div>
+              <div class="button primary4" style="margin:0!important" (click)="onSearchData()">
+                Search
+              </div>
+            </div> -->
+
+            <!-- Tableau des utilisateurs -->
+            <nz-table #basicTable [nzData]="datas" [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>Software</th>
+                  <th>Start date</th>
+                  <th>End date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>{{ data.id }}</td>
+                  <td>{{ data.software.name }}</td>
+                  <td>
+                    {{ data.startDate | date: 'EE, MM-d-y, h:mm a' }}
+                  </td>
+                  <td>
+                    {{data.endDate | date: 'EE, MM-d-y, h:mm a'}}
+                  </td>
+                  <td><a><span nz-icon nzType="eye" nzTheme="outline" (click)="showLicense(data.id)"></span></a></td>
+                </tr>
+              </tbody>
+            </nz-table>
+
+            <!-- Pagination -->
+            <nz-pagination
+              class="ant-pagination-center"
+              [nzPageIndex]="currentPage + 1"
+              [nzTotal]="totalPages * pageSize"
+              [nzPageSize]="pageSize"
+              [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[5, 10, 20]"
+              (nzPageIndexChange)="getData($event - 1, pageSize)"
+              (nzPageSizeChange)="getData(currentPage, $event)"
+            >
+            </nz-pagination>
+          </div>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+  <div class="butt-popup bottom" (click)="addlicenseForm()">
+    <button nz-button nzType="primary" [nzSize]="size" nzShape="circle">
+      <span nz-icon nzType="plus" nzTheme="outline"></span>
+    </button>
+  </div>
+</div>

@@ -16,13 +16,14 @@ export class AuthService {
   }
 
   getUserConnected(): any {
-    return localStorage.getItem('userconnected');
+    return  JSON.parse(localStorage.getItem('userconnected') || '{}');
   }
 
   setToken(userconnected:any): void {
      localStorage.setItem('token',userconnected.token);
      localStorage.setItem('role',userconnected.user.role.codeRole)
-     localStorage.setItem('userconnected',userconnected.user);
+     localStorage.setItem('userconnected',JSON.stringify(userconnected.user));
+     console.log(userconnected.user);
   }
 
   logout(): void {

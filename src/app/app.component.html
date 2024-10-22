@@ -5,6 +5,10 @@
       <app-menu-field></app-menu-field>
     </div>
     <div class="component">
+      <div class="header-top" *ngIf="authService.getToken()">
+        <div class="content-header"></div>
+        <h1 style="text-align: center; width: 100%;">MANAGE LICENSE</h1>
+      </div>
       <div style="width:100%">
         <router-outlet></router-outlet>
       </div>

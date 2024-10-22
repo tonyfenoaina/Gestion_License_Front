@@ -1,0 +1,14 @@
+@use 'variables' as *;
+  div.input-group{
+    display: grid;
+    gap: 1rem;
+  }
+  div.user-about{
+    .ant-card{
+      height: 95%!important;
+      padding: 0.5rem!important;
+    }
+  }
+  div.button.left{
+    margin-left: 0!important;
+  }

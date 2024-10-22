@@ -1,0 +1,27 @@
+<div class="license-content">
+  <div class="popup-form">
+    <div class="content-popup">
+      <div class="title" style="width: 100%; display: flex">
+        <span>ADD PC</span>
+      </div>
+
+      <!-- Boucle sur la liste des PCs récupérés et affiche chaque valeur -->
+      <div *ngFor="let pc of pcList; let i = index">
+        <div class="one-input">
+          <label>PC-{{ i + 1 }}</label>
+          <input
+            nz-input
+            [value]="pc"
+            type="text"
+            readonly
+          />
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top: 2rem">
+        <div type="button" class="cancel-link" (click)="backCustomer()">Cancel</div>
+        <div type="submit" class="button primary1 left" (click)="submit()">Finish</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,18 +2,20 @@ div.license {
   height: 100%;
 
   div.content {
-    display: flex;
-    // grid-template-columns: 21% 76.5%;
+    display: grid;
     height: 100%;
-    gap: 1rem;
+    gap: 1%;
     margin: auto;
+    grid-template-columns: 19% 79.5%;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 
     div.component {
       display: flex;
       justify-content: center;
-      align-items: center;
       position: relative;
-      width: 77.5%;
+      width: 100%;
+      margin-top: 3.8rem;
     }
   }
 }

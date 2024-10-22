@@ -1,0 +1,163 @@
+<div class="user-content">
+    <div class="list">
+      <nz-tabset>
+        <nz-tab nzTitle="List of customer">
+          <nz-card>
+            <div>
+              <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem">
+                <div class="input-search">
+                  <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input type="text" nz-input placeholder="Search..." value="keyword" [(ngModel)]="keyword"/>
+                  </nz-input-group>
+                  <ng-template #suffixIconSearch>
+                    <span nz-icon nzType="search" nzTheme="outline"></span>
+                  </ng-template>
+                </div>
+                <div class="button primary4" style="margin:0!important" (click)="onSearchData()">
+                  Search
+                </div>
+              </div>
+
+              <!-- Tableau des utilisateurs -->
+              <nz-table #basicTable [nzData]="datas" [nzShowPagination]="false">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Mail</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.surname }} {{ data.firstname }}</td>
+                    <td>
+                      <a [href]="'contactto:' + data.contact">{{
+                        data.contact
+                      }}</a>
+                    </td>
+                    <td>
+                      <a [href]="'mailto:' + data.email">{{ data.email }}</a>
+                    </td>
+                    <td>{{ data.address }}</td>
+                    <td>
+                      <a
+                        ><span
+                          nz-icon
+                          nzType="edit"
+                          nzTheme="outline"
+                          style="color: blue"
+                          (click)="actionUpdate(data)"
+                        ></span
+                      ></a>
+                      <nz-divider nzType="vertical"></nz-divider>
+                      <a><span nz-icon nzType="eye" nzTheme="outline" (click)="listLicense(data)"></span></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+
+              <!-- Pagination -->
+              <nz-pagination
+                class="ant-pagination-center"
+                [nzPageIndex]="currentPage + 1"
+                [nzTotal]="totalPages * pageSize"
+                [nzPageSize]="pageSize"
+                [nzShowSizeChanger]="true"
+                [nzPageSizeOptions]="[5, 10, 20]"
+                (nzPageIndexChange)="fetchData($event - 1, pageSize)"
+                (nzPageSizeChange)="fetchData(currentPage, $event)"
+              >
+              </nz-pagination>
+            </div>
+          </nz-card>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+
+    <div class="butt-popup bottom" (click)="togglePopup()">
+      <button nz-button nzType="primary" [nzSize]="size" nzShape="circle">
+        <span nz-icon nzType="plus" nzTheme="outline"></span>
+      </button>
+    </div>
+    <div *ngIf="isPopupVisible" class="popup-form">
+      <div class="content-popup">
+        <div class="title" style="width: 100%; display: flex">
+          <span>NEW CUSTOMER</span>
+          <span
+            nz-icon
+            nzType="close-circle"
+            nzTheme="outline"
+            style="
+              margin-left: auto;
+              cursor: pointer;
+              font-size: 22px;
+              color: red;
+            "
+            (click)="togglePopup()"
+          ></span>
+        </div>
+        <div>
+          <div class="input-group">
+            <div class="one-input">
+              <label>Surname</label>
+              <input
+                nz-input
+                placeholder="Enter a surname"
+                [(ngModel)]="surname"
+                type="text"
+                value="surname"
+              />
+            </div>
+            <div class="one-input">
+              <label>Firstname</label>
+              <input
+                nz-input
+                placeholder="Enter an firstname"
+                [(ngModel)]="firstname"
+                type="text"
+                value="firstname"
+              />
+            </div>
+          </div>
+          <div class="one-input">
+            <label>Contact</label>
+            <input
+              nz-input
+              placeholder="Enter an contact"
+              [(ngModel)]="contact"
+              type="text"
+              value="contact"
+            />
+          </div>
+          <div class="one-input">
+            <label>Email</label>
+            <input
+              nz-input
+              placeholder="Enter an email"
+              [(ngModel)]="email"
+              type="text"
+              value="email"
+            />
+          </div>
+          <div class="one-input">
+            <label>Address</label>
+            <input
+              nz-input
+              placeholder="Enter an address"
+              [(ngModel)]="address"
+              type="text"
+              value="address"
+            />
+          </div>
+          <div class="actions">
+            <div href="" class="cancel-link" (click)="togglePopup()">Cancel</div>
+            <div class="button primary1 left" (click)="sendValues()">
+              {{ sendButton }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

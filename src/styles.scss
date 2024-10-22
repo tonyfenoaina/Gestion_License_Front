@@ -16,6 +16,15 @@ body {
   color: $text-color-smooth;
 }
 
+a{
+  text-decoration: none;
+}
+
+h1,h2{
+  color: $principal-color-4;
+  font-weight: 700;
+}
+
 div.actions{
   display: flex;
   align-items: center;
@@ -54,6 +63,16 @@ div.button.primary2 {
   margin-top: $min-margin-top;
 }
 
+div.button.primary3 {
+  border: 3px solid #7197CD;
+  background-color: #7197CD;
+  margin-top: $min-margin-top;
+}
+
+div.button.primary4 {
+  background-color: #3DB288;
+}
+
 .button:hover {
   background-color: $principal-color-4 !important;
   border: none !important;
@@ -69,10 +88,6 @@ i {
 .ant-tabs-top>.ant-tabs-nav,
 .ant-tabs-top>div>.ant-tabs-nav {
   margin: 0 0 0 !important;
-}
-
-.ant-card-bordered {
-  border-radius: 20px;
 }
 
 .ant-tabs-tab {
@@ -112,13 +127,14 @@ i {
 .ant-pagination {
   justify-content: center;
   display: flex;
-  margin-top: 1.5rem;
+  bottom: 1rem;
+  position: absolute;
+  width: 100%;
 }
 
 .ant-input-affix-wrapper {
   background-color: $principal-color-6;
   border-radius: 5rem;
-  height: 2.5rem;
   border: none !important;
 }
 
@@ -140,12 +156,11 @@ div.input-group{
 div.input-search {
   width: 30rem;
   margin-left: auto;
-  margin-bottom: 1rem;
 }
 
 div.butt-popup.bottom {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1rem;
   right: 0;
 }
 
@@ -157,34 +172,75 @@ div.one-input{
   margin-bottom:1rem;
 }
 
+.ant-input{
+  border-radius: 5rem;
+  height: 2.5rem;
+}
+
 //popup formulaire
 div.popup-form {
-  position: absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top: 0;
+  left: -1rem;
+  width: 102.5%;
+  height: 100%;
   display: flex;
-  justify-content:center;
-  align-items:center;
-  background: rgba(109, 109, 109, 0.321);
-  color: $text-color-smooth;
+  justify-content: center;
+  align-items: center;
+  background: rgba(109, 109, 109, 0.3);
+  color: #787A91;
   font-size: 14px;
-
-  .ant-input{
-    border-radius: 5rem;
-    height: 2.5rem;
-  }
+  z-index: 99;
+  position: absolute;
 
   div.content-popup{
     background: white;
     padding: 2rem;
-    width: 45%;
     border-radius: .5rem;
 
     div.title{
       margin-bottom: 1rem;
-      font-size: 16px;
+      font-size: 20px;
     }
   }
 }
+//input-image
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-label {
+  display: inline-block;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.file-name {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+//HEADER
+  div.header-top{
+    position: fixed;
+    background:white;
+    display: flex;
+    width: 81%;
+    padding: 0.2rem;
+    box-shadow: $box-shadow-1;
+    z-index: 99;
+    top: 0;
+  }
+
+  .ant-card-body{
+    height: 39rem;
+  }
+
+  div.license-content div.content-popup{
+    overflow-y: scroll!important;
+    scrollbar-width: thin!important;
+    border-radius: 0!important;
+  }

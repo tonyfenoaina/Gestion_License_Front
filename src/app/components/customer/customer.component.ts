@@ -6,22 +6,21 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { GetobjectService } from 'src/app/service/getobject.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-customer',
+  templateUrl: './customer.component.html',
+  styleUrls: ['./customer.component.scss']
 })
-export class UserComponent extends Basecomponent {
+export class CustomerComponent extends Basecomponent {
   size: any = 'large';
 
-  firstname?: string | '';
-  email?: string | '';
-  contact?: string | '';
   surname?: string | '';
-  password?: string | '';
-  confirmPassword?: string | '';
+  firstname?: string | '';
+  contact?: string | '';
+  email?: string | '';
+  address?: string | '';
 
-  urlupdate = 'secure/user/update/data';
-  urladd = 'secure/admin/users/add';
+  urlupdate = 'api/customer';
+  urladd = 'api/customer/add';
 
   constructor(
     objectlistService: ObjectlistService,
@@ -29,7 +28,7 @@ export class UserComponent extends Basecomponent {
      protected override nzMessageService: NzMessageService,
      protected override service: GetobjectService
   ) {
-    super(objectlistService,'secure/admin/users/search', 'secure/admin/users/getUser','secure/admin/users/delete', nzMessageService, service);
+    super(objectlistService,'api/customer/searchh', 'api/customer/getAll','api/customer/delete', nzMessageService, service);
   }
 
   ngOnInit(): void {
@@ -37,31 +36,29 @@ export class UserComponent extends Basecomponent {
   }
 
   mapDataToFormFields(data: any): void {
-    this.firstname = data.firstname;
-    this.email = data.email;
-    this.contact = data.contact;
     this.surname = data.surname;
-    this.password = data.password;
-    this.confirmPassword = data.confirmPassword;
+    this.firstname = data.firstname;
+    this.contact = data.contact;
+    this.email = data.email;
+    this.address = data.address;
   }
 
-  deleteData(){
+  deleteData(): void {
     this.id = null;
-    this.firstname = '';
-    this.email = '';
-    this.contact ='';
     this.surname = '';
-    this.password = '';
-    this.confirmPassword = '';
+    this.firstname = '';
+    this.contact = '';
+    this.email = '';
+    this.address = '';
   }
 
   createDataFromFormFields(): any {
     return {
-      email: this.email,
       surname: this.surname,
       firstname: this.firstname,
-      password: (this.password === this.confirmPassword) ? this.password : null,
       contact: this.contact,
+      email: this.email,
+      address: this.address,
     };
   }
 

@@ -1,0 +1,225 @@
+<div class="license-content">
+  <div class="popup-form">
+    <div class="content-popup">
+      <div class="title" style="width: 100%; display: flex">
+        <h1 style="font-size:20px">ADD LICENSE</h1>
+      </div>
+      <div>
+        <!-- formulaire -->
+        <div class="input-group">
+          <div class="one-input">
+            <label>Start date</label>
+            <input
+              nz-input
+              placeholder="Start date"
+              [(ngModel)]="startdate"
+              type="date"
+              value="startdate"
+            />
+          </div>
+
+          <div class="one-input">
+            <label>End date</label>
+            <input
+              nz-input
+              placeholder="end date"
+              [(ngModel)]="enddate"
+              type="date"
+              value="enddate"
+            />
+          </div>
+        </div>
+        <div class="one-input">
+          <label>Number of activation</label>
+          <input
+            nz-input
+            placeholder="Number of activation"
+            [(ngModel)]="activationNumber"
+            type="number"
+            value="activationNumber"
+          />
+        </div>
+        <!-- fin formulaire -->
+        <div class="title" style="width: 100%; display: flex" font-size="16px">
+          <span>Choose a software</span>
+        </div>
+        <div *ngIf="!selectedSoftware" class="softwares">
+          <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem">
+            <div class="input-search">
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="Search..." value="keyword" [(ngModel)]="softwareKeyword"/>
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+              </ng-template>
+            </div>
+            <div class="button primary4" style="margin:0!important" (click)="fetchData()">
+              Search
+            </div>
+          </div>
+          <!-- Tableau des utilisateurs -->
+          <nz-table #basicTable [nzData]="softwares" [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>
+                  <img
+                    [src]="'data:image/PNG;base64,' + data.photo"
+                    alt="img"
+                    style="width: 50px; height: 50px; border-radius: 50%"
+                  />
+                </td>
+                <td>
+                  {{ data.name }}
+                </td>
+                <td>
+                  <div class="button primary1" (click)="selectSoftware(data)">
+                    Choose
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <nz-pagination
+            class="ant-pagination-center"
+            [nzPageIndex]="currentPageSoftware + 1"
+            [nzTotal]="totalPagesSoftwares * pageSizeSoftware"
+            [nzPageSize]="pageSizeSoftware"
+            [nzShowSizeChanger]="true"
+            [nzPageSizeOptions]="[5, 10, 20]"
+            (nzPageIndexChange)="fetchData($event - 1, pageSizeSoftware)"
+            (nzPageSizeChange)="fetchData(currentPageSoftware, $event)"
+          >
+          </nz-pagination>
+        </div>
+        <!-- selectedsoftware -->
+        <div *ngIf="selectedSoftware">
+          <nz-table
+            #basicTable
+            *ngIf="selectedSoftware"
+            [nzData]="selectedSoftware"
+          >
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <img
+                    [src]="'data:image/PNG;base64,' + selectedSoftware.photo"
+                    alt="img"
+                    style="width: 50px; height: 50px; border-radius: 50%"
+                  />
+                </td>
+                <td>
+                  {{ selectedSoftware.name }}
+                </td>
+              </tr>
+            </tbody>
+          </nz-table>
+          <br />
+          <!-- modules -->
+          <div class="title" style="width: 100%; display: flex">
+            <span>Modules</span>
+          </div>
+
+          <div
+            class="actions"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: end;
+              color: cornflowerblue;
+              gap: 1rem;
+              margin-left: auto;
+              cursor: pointer;
+              padding:1rem;
+            "
+            (click)="showSoftwares()"
+          >
+            Choose software <i class="fa-solid fa-rotate-left"></i>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem">
+            <div class="input-search">
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input type="text" nz-input placeholder="Search..." value="keyword" [(ngModel)]="moduleKeyword"/>
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search" nzTheme="outline"></span>
+              </ng-template>
+            </div>
+            <div class="button primary4" style="margin:0!important" (click)="fetchDataModules()">
+              Search
+            </div>
+          </div>
+          <!-- Tableau des modules -->
+          <div>
+            <nz-table #basicTable [nzData]="modules" [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th>
+                    <label
+                      nz-checkbox
+                      [(ngModel)]="allChecked"
+                      (ngModelChange)="onAllChecked($event)"
+                    >
+                    </label>
+                  </th>
+                  <th>Image</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data; let i = index">
+                  <td>
+                    <label
+                      nz-checkbox
+                      [(ngModel)]="checkedMap[data.id]"
+                      (ngModelChange)="onItemChecked(data.id, $event)"
+                    >
+                    </label>
+                  </td>
+                  <td>
+                    <img
+                      [src]="'data:image/PNG;base64,' + data.photo"
+                      alt="img"
+                      style="width: 50px; height: 50px; border-radius: 50%"
+                    />
+                  </td>
+                  <td>{{ data.name }}</td>
+                </tr>
+              </tbody>
+            </nz-table>
+            <nz-pagination
+              class="ant-pagination-center"
+              [nzPageIndex]="currentPageModule + 1"
+              [nzTotal]="totalPagesModules * pageSizeModule"
+              [nzPageSize]="pageSizeModule"
+              [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[5, 10, 20]"
+              (nzPageIndexChange)="fetchDataModules($event - 1, pageSizeModule)"
+              (nzPageSizeChange)="fetchDataModules(currentPageModule, $event)"
+            >
+            </nz-pagination>
+          </div>
+          <!-- fin selectedsoftware -->
+          <div class="actions" style="margin-top: 2rem">
+            <div href="" class="cancel-link" (click)="backCustomer()">
+              Cancel
+            </div>
+            <div class="button primary1 left" (click)="addLicense()">Create License</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 <div class="menu-page">
   <div class="profil">
-    <img src="assets/defaultuser.png" alt="imguser">
-    <div class="name-label">Leonard Germin</div>
+    <img [src]="'data:image/PNG;base64,' + photo" alt="img" style="width: 50px; height:50px; border-radius:50%; object-fit: contain;" *ngIf="photo"/>
+    <div class="name-label">{{name}}</div>
     <div class="role">{{ role }}</div>
-    <div class="button primary2">Edit Profil</div>
+    <div class="button primary2" (click)="editprofil()">Edit Profil</div>
   </div>
 
   <div class="menu">
-    <div class="content" style="width:100%">
+    <div class="content">
       <div *ngFor="let section of getFilteredSections()">
         <div class="section">
           <div class="type">{{ section.section }}</div>

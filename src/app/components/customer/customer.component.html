@@ -1,0 +1,80 @@
+<div class="user-content">
+  <div class="list">
+    <nz-tabset>
+      <nz-tab nzTitle="List of customer">
+        <nz-card>
+          <div>
+            <div style="display:flex; gap:1rem; align-items:center; margin-bottom:1rem">
+              <div class="input-search">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                  <input type="text" nz-input placeholder="Search..." value="keyword" [(ngModel)]="keyword"/>
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                  <span nz-icon nzType="search" nzTheme="outline"></span>
+                </ng-template>
+              </div>
+              <div class="button primary4" style="margin:0!important" (click)="onSearchData()">
+                Search
+              </div>
+            </div>
+
+            <!-- Tableau des utilisateurs -->
+            <nz-table #basicTable [nzData]="datas" [nzShowPagination]="false">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Contact</th>
+                  <th>Mail</th>
+                  <th>Address</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>{{ data.surname }} {{ data.firstname }}</td>
+                  <td>
+                    <a [href]="'contactto:' + data.contact">{{
+                      data.contact
+                    }}</a>
+                  </td>
+                  <td>
+                    <a [href]="'mailto:' + data.email">{{ data.email }}</a>
+                  </td>
+                  <td>{{ data.address }}</td>
+                  <td>
+                    <a
+                      nz-popconfirm
+                      nzPopconfirmTitle="Are you sure?"
+                      nzOkText="ok"
+                      nzCancelText="cancel"
+                      (nzOnConfirm)="confirm(data.id)"
+                      ><span
+                        nz-icon
+                        nzType="delete"
+                        nzTheme="outline"
+                        style="color: red"
+                      ></span
+                    ></a>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+
+            <!-- Pagination -->
+            <nz-pagination
+              class="ant-pagination-center"
+              [nzPageIndex]="currentPage + 1"
+              [nzTotal]="totalPages * pageSize"
+              [nzPageSize]="pageSize"
+              [nzShowSizeChanger]="true"
+              [nzPageSizeOptions]="[5, 10, 20]"
+              (nzPageIndexChange)="fetchData($event - 1, pageSize)"
+              (nzPageSizeChange)="fetchData(currentPage, $event)"
+            >
+            </nz-pagination>
+          </div>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>

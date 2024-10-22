@@ -1,0 +1,111 @@
+<div class="user-about">
+    <nz-tabset>
+      <nz-tab nzTitle="About User">
+        <nz-card>
+          <div class="content-popup">
+            <div style="width:65%; margin:auto">
+              <div class="one-input">
+                <label for="fileInput" class="custom-file-label"
+                  ><img
+                    src="assets/image.png"
+                    alt="img"
+                    style="width: 4rem; height: 4rem"
+                /></label>
+                <input
+                  type="file"
+                  id="fileInput"
+                  (change)="onFileSelected($event)"
+                  hidden
+                  required
+                />
+                <span>{{ fileName }}</span>
+              </div>
+              <div class="input-group">
+                <div class="one-input">
+                  <label>Firstname</label>
+                  <input
+                    nz-input
+                    placeholder="Enter a firstname"
+                    [(ngModel)]="firstname"
+                    type="text"
+                    value="firstname"
+                  />
+                </div>
+                <div class="one-input">
+                  <label>Lastname</label>
+                  <input
+                    nz-input
+                    placeholder="Enter a lastname"
+                    [(ngModel)]="surname"
+                    type="text"
+                    value="surname"
+                  />
+                </div>
+              </div>
+              <div class="one-input">
+                <label>Email</label>
+                <input
+                  nz-input
+                  placeholder="Enter an email"
+                  [(ngModel)]="email"
+                  type="text"
+                  value="email"
+                />
+              </div>
+              <div class="one-input">
+                <label>Contact</label>
+                <input
+                  nz-input
+                  placeholder="Enter an contact"
+                  [(ngModel)]="contact"
+                  type="text"
+                  value="contact"
+                />
+              </div>
+              <div class="one-input">
+                <label>Password</label>
+                <input
+                  nz-input
+                  placeholder="Enter a password"
+                  [(ngModel)]="password"
+                  type="password"
+                  value=""
+                />
+              </div>
+              <div class="one-input">
+                <label>Confirm a password</label>
+                <input
+                  nz-input
+                  placeholder="Confirm the password"
+                  [(ngModel)]="confirmPassword"
+                  type="password"
+                />
+              </div>
+              <div class="actions">
+                <div class="button primary1 left" (click)="updateUser()">
+                  Update
+                </div>
+              </div>
+            </div>
+          </div>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+    <div *ngIf="isPopupVisible" class="popup-form">
+      <div class="content-popup">
+        <div class="title" style="width: 100%;">
+          <p>INFO</p>
+          <p>You need to log out to apply the modification.</p>
+          <div>
+            <div class="actions">
+              <div class="button primary1 left" (click)="logout()">
+                Log Out
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+
+      </div>
+    </div>
+</div>

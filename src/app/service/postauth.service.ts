@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostobjectService {
+export class PostauthService {
   private baseUrl = environment.baseUrl;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   // Fonction pour ajouter un objet en utilisant fetch
   async addObject(apiName: string, data: any): Promise<any> {
     const url = `${this.baseUrl}/${apiName}`;
     console.log(data);
-
     try {
       const response = await fetch(url, {
-        method: 'POST',
+        method:'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Utilisé si tu envoies des cookies ou des informations d'authentification
+        credentials: 'include',
         body: JSON.stringify(data),
       });
 

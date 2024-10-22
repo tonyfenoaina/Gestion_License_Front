@@ -1,0 +1,62 @@
+@use 'variables' as *;
+
+div.aboutlicense{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
+  scrollbar-width: thin;
+  padding: 1rem;
+  div.button.primary4{
+    font-size: 14px;
+  }
+  div.header{
+    position: fixed;
+    display: flex;
+    width: 81%;
+    padding: 1rem;
+    z-index: 99;
+    div.buttons{
+      div.button{
+        height: 2.5rem!important;
+      }
+      display:flex;
+      gap:1rem;
+      margin-left: auto;
+    }
+  }
+
+  div.row1{
+    margin-top: 2rem;
+    display: grid;
+    gap: 1.5%;
+    grid-template-columns: 48%;
+    div.fiche.one{
+      grid-column: 1;
+    }
+    div.fiche.two{
+      grid-column: 2;
+    }
+    div.fiche{
+      background-color: white;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+  }
+  div.card{
+    background-color:white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 0.7rem;
+  }
+  div.text-span{
+    padding: 1rem;
+    span{
+      font-weight: 700;
+    }
+  }
+
+}

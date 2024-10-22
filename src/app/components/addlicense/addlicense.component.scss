@@ -1,0 +1,55 @@
+div.license-content {
+  .ant-pagination{
+    position: inherit!important;
+    bottom: 0.2rem;
+  }
+
+  .ant-pagination, .ant-pagination ol, .ant-pagination ul{
+    margin-top:1.2rem!important;
+  }
+  .ant-dropdown-button{
+    width: 100%!important;
+  }
+  .ant-btn{
+    height: 2.3rem!important;
+  }
+  .ant-btn-group .ant-btn:first-child{
+    width: 100%!important;
+    text-align: start!important;
+    border-radius: 2rem 0 0 2rem!important;
+  }
+  div.popup-form {
+    background: none !important;
+
+    div.content-popup {
+      width: 90% !important;
+      height: 94%;
+      overflow-y: scroll;
+    }
+  }
+  /* Your existing styles */
+  content div.popup-form div.content-popup {
+    width: 90% !important;
+    height: 94%;
+    overflow-y: scroll;
+  }
+
+  div.softwares{
+    div.button.primary1{
+      margin: 0!important;
+    }
+  }
+
+  div.content-popup{
+    scrollbar-width: thin!important; /* Makes scrollbar thinner */
+    scrollbar-color: #d1d1d1 #f1f1f1!important;
+    border-radius: 0 !important;
+    padding: 4rem;
+  }
+
+}
+
+div.content-popup{
+  overflow-y: scroll!important;
+  scrollbar-width: thin!important;
+}

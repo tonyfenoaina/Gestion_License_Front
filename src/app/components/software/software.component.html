@@ -1,7 +1,7 @@
 <div class="user-content">
   <div class="list">
     <nz-tabset>
-      <nz-tab nzTitle="List of users">
+      <nz-tab nzTitle="List of Software">
         <nz-card>
           <div>
             <!-- Input de recherche -->
@@ -19,32 +19,46 @@
               </div>
             </div>
 
-            <nz-spin nzTip="Loading..." *ngIf="!datas"
-                style="height: 12vh;">
+            <nz-spin nzTip="Loading..." *ngIf="!datas" style="height: 12vh">
             </nz-spin>
 
             <!-- Tableau des utilisateurs -->
-            <nz-table #basicTable [nzData]="datas" [nzShowPagination]="false" *ngIf="datas">
+            <nz-table
+              #basicTable
+              [nzData]="datas"
+              [nzShowPagination]="false"
+              *ngIf="datas"
+            >
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Name</th>
-                  <th>Contact</th>
-                  <th>Mail</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let data of basicTable.data">
-                  <td>{{ data.surname }} {{ data.firstname }}</td>
                   <td>
-                    <a [href]="'contactto:' + data.contact">{{
-                      data.contact
-                    }}</a>
+                    <img
+                      [src]="'data:image/PNG;base64,' + data.photo"
+                      alt="img"
+                      style="width: 50px; height: 50px; border-radius: 50%"
+                    />
                   </td>
                   <td>
-                    <a [href]="'mailto:' + data.email">{{ data.email }}</a>
+                    {{ data.name }}
                   </td>
                   <td>
+                    <a
+                      ><span
+                        nz-icon
+                        nzType="edit"
+                        nzTheme="outline"
+                        style="color: blue"
+                        (click)="actionUpdate(data)"
+                      ></span
+                    ></a>
+                    <nz-divider nzType="vertical"></nz-divider>
                     <a
                       nz-popconfirm
                       nzPopconfirmTitle="Are you sure?"
@@ -56,6 +70,15 @@
                         nzType="delete"
                         nzTheme="outline"
                         style="color: red"
+                      ></span
+                    ></a>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <a
+                      ><span
+                        nz-icon
+                        nzType="eye"
+                        nzTheme="outline"
+                        (click)="listModule(data)"
                       ></span
                     ></a>
                   </td>
@@ -81,7 +104,7 @@
     </nz-tabset>
   </div>
 
-  <div class="butt-popup bottom" (click)="togglePopup()">
+  <div class="butt-popup bottom" (click)="togglePopupAdd()">
     <button nz-button nzType="primary" [nzSize]="size" nzShape="circle">
       <span nz-icon nzType="plus" nzTheme="outline"></span>
     </button>
@@ -89,7 +112,7 @@
   <div *ngIf="isPopupVisible" class="popup-form">
     <div class="content-popup">
       <div class="title" style="width: 100%; display: flex">
-        <span>NEW USER</span>
+        <span>NEW SOFTWARE</span>
         <span
           nz-icon
           nzType="close-circle"
@@ -104,70 +127,35 @@
         ></span>
       </div>
       <div>
-        <div class="input-group">
-          <div class="one-input">
-            <label>Firstname</label>
-            <input
-              nz-input
-              placeholder="Enter a firstname"
-              [(ngModel)]="firstname"
-              type="text"
-              value="firstname"
-            />
-          </div>
-          <div class="one-input">
-            <label>Lastname</label>
-            <input
-              nz-input
-              placeholder="Enter a lastname"
-              [(ngModel)]="surname"
-              type="text"
-              value="surname"
-            />
-          </div>
+        <div class="one-input">
+          <label for="fileInput" class="custom-file-label"
+            ><img
+              src="assets/image.png"
+              alt="img"
+              style="width: 4rem; height: 4rem"
+          /></label>
+          <input
+            type="file"
+            id="fileInput"
+            (change)="onFileSelected($event)"
+            hidden
+            required
+          />
+          <span>{{ fileName }}</span>
         </div>
         <div class="one-input">
-          <label>Email</label>
+          <label>Name</label>
           <input
             nz-input
-            placeholder="Enter an email"
-            [(ngModel)]="email"
+            placeholder="Enter a name"
+            [(ngModel)]="name"
             type="text"
-            value="email"
-          />
-        </div>
-        <div class="one-input">
-          <label>Contact</label>
-          <input
-            nz-input
-            placeholder="Enter an contact"
-            [(ngModel)]="contact"
-            type="text"
-            value="contact"
-          />
-        </div>
-        <div class="one-input">
-          <label>Password</label>
-          <input
-            nz-input
-            placeholder="Enter a password"
-            [(ngModel)]="password"
-            type="password"
-            value=""
-          />
-        </div>
-        <div class="one-input">
-          <label>Confirm a password</label>
-          <input
-            nz-input
-            placeholder="Confirm the password"
-            [(ngModel)]="confirmPassword"
-            type="password"
+            value="name"
           />
         </div>
         <div class="actions">
           <div href="" class="cancel-link" (click)="togglePopup()">Cancel</div>
-          <div class="button primary1 left" (click)="sendValues()">
+          <div class="button primary1 left" (click)="sendValues($event)">
             {{ sendButton }}
           </div>
         </div>

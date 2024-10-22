@@ -7,7 +7,12 @@ div.login-page {
   height: 100vh;
   width: 100%;
   background-color: #fff;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  div.button{
+    padding: 1rem 2.5rem!important;
+  }
   div.form {
     background-color: $third-color-1;
     height: 40rem;

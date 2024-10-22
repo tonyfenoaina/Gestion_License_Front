@@ -1,12 +1,14 @@
 @use 'variables' as *;
 
 div.menu-page {
+  position: fixed;
   background-color: $principal-color-2;
   height: 100%;
-  width: 20vw;
+  width:19%;
   color: $third-color-1;
   display: grid;
   grid-template-rows: 32% 50%;
+  z-index: 100;
 
   div.profil>div {
     margin-bottom: .5rem;
@@ -46,12 +48,12 @@ div.menu-page {
   }
 
   div.menu {
-    width: 80%;
+    width: 100%;
     display: flex;
-    margin: auto;
+    justify-content: center;
 
     div.content {
-
+      width: 80%;
       div.section>div.type {
         margin: 1rem 0;
       }
